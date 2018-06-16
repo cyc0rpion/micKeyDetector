@@ -1,6 +1,7 @@
 #!/usr/bin/
 
 from subprocess import Popen, PIPE
+import os, signal
 from sys import stdout
 from re import split
 
@@ -26,7 +27,19 @@ class Proc(object):
     def name(self):
 	''' Return command only'''
 	return '%s' %self.cmd	
+    def procid(self):
+	'''Return pid only'''
+	return '%s' %self.pid
 
+
+def kill_logger(key_pid):
+    print("Do you want to stop this keylogger: y/n ?")
+    response = raw_input()
+    if (response=="y" or response =="Y"):
+	os.kill(int(key_pid), signal.SIGKILL)
+    else:
+	pass
+	 
 
 def get_proc_list():
     ''' Retrieves a list [] of Proc objects representing the active
@@ -50,12 +63,12 @@ if __name__ == "__main__":
 		
 
 	proc_cmd=[]
-
+	proc_pid=[]
 
 	for proc in proc_list:
 		stdout.write("\t" + proc.name()+ "\n")	
     		proc_cmd.append(proc.name())
-	
+		proc_pid.append(proc.procid())		
 
 	print(proc_cmd)
 
@@ -67,11 +80,11 @@ if __name__ == "__main__":
     	for x in proc_cmd:
 		for y in l1:
 			if(x.find(y)>-1):
-				print(" KeyLogger Detected: "+x)
+				print(" KeyLogger Detected: "+proc_pid[record]+" ---> "+x)
+				kill_logger(proc_pid[record])
 				flag=0
 		record+=1
 				
 
 	if(flag):
 		print("No Keylogger Detected")
-
