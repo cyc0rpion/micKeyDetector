@@ -64,12 +64,9 @@ if __name__ == "__main__":
 	process_cmd=[]
 	process_pid=[]
 
-	for process in process_list:
-#		stdout.write("\t" + process.name()+ "\n")	
+	for process in process_list:	
     		process_cmd.append(process.name())
 		process_pid.append(process.procid())		
-
-#	print(process_cmd)
 
 	l1 = ["logkey","keylog","keysniff","kisni","lkl","ttyrpld","uber","vlogger"]
 
@@ -87,3 +84,7 @@ if __name__ == "__main__":
 
 	if(flag):
 		print("No Keylogger Detected")
+		
+		
+
+		
