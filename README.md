@@ -11,7 +11,7 @@ ________________________________________________________________________________
 
 * Using git clone: 
 
-  1. Git clone micKeyDetector using "https://github.com/mohitbalu/micKeyDetector.git"
+  1. Git clone micKeyDetector using "git clone https://github.com/mohitbalu/micKeyDetector.git"
   2. run $ "python micKeyDetector.py"
 
 * Download
